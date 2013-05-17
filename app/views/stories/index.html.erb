@@ -2,18 +2,31 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Story</th>
+    <th>To Do</th>
+    <th>Doing</th>
+    <th>To Verify</th>
+    <th>Done</th>
   </tr>
 
 <% @stories.each do |story| %>
   <tr>
-    <td><%= story.name %></td>
-    <td><%= link_to 'Show', story %></td>
-    <td><%= link_to 'Edit', edit_story_path(story) %></td>
-    <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <%= story.name %>
+      <%= link_to 'Edit', edit_story_path(story) %>
+      <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <div>
+      </div>
+      <%= link_to 'New Task', new_story_task_path(story) %>
+    </td>
+    <td>
+      <% story.tasks.each do |task| %>
+        <div><%= task.description %></div>
+      <% end %>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 <% end %>
 </table>
