@@ -1,26 +1,4 @@
 class TasksController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
-  def index
-    @tasks = Task.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tasks }
-    end
-  end
-
-  # GET /tasks/1
-  # GET /tasks/1.json
-  def show
-    @task = Task.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @task }
-    end
-  end
-
   # GET /tasks/new
   # GET /tasks/new.json
   def new
@@ -35,13 +13,13 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @story = Story.find params[:story_id]
     @task = Task.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-
     @story = Story.find(params[:story_id])
     @task = @story.tasks.build(params[:task])
 

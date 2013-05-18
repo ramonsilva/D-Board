@@ -2,29 +2,19 @@ require 'spec_helper'
 
 describe TasksController do
 
-  let(:valid_attributes) { { "description" => "MyText" } }
+  let(:valid_attributes) { { "description" => "MyText", status: 1 } }
   let(:valid_session) { {} }
   let(:story) { stub_model(Story, id: 42, name: 'Some Story name') } 
+  let(:params) { { story_id: story.id } }
 
-  describe "GET index" do
-    it "assigns all tasks as @tasks" do
-      task = Task.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:tasks).should eq([task])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
-      get :show, {:id => task.to_param}, valid_session
-      assigns(:task).should eq(task)
+  shared_examples "finding story" do |method| 
+    it "assigns a story from params as @story" do
+      get method, params
+      assigns(:story).should == story
     end
   end
 
   describe "GET new" do
-    let(:params) { { story_id: story.id } }
-
     before :each do
       Story.stub(:find).and_return(story)
     end
@@ -40,9 +30,16 @@ describe TasksController do
   end
 
   describe "GET edit" do
+    let(:task) { Task.create! valid_attributes }
+    before :each do
+      Story.stub(:find).and_return(story)
+      params.merge!(id: task.id)
+    end
+
+    it_behaves_like "finding story", :edit
+
     it "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
-      get :edit, {:id => task.to_param}, valid_session
+      get :edit, params, valid_session
       assigns(:task).should eq(task)
     end
   end
