@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
+  before_filter :find_story
+
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @story = Story.find params[:story_id]
-    @task = Task.new
+    @task = @story.tasks.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -13,14 +14,12 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @story = Story.find params[:story_id]
-    @task = Task.find(params[:id])
+    @task = @story.tasks.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @story = Story.find(params[:story_id])
     @task = @story.tasks.build(params[:task])
 
     respond_to do |format|
@@ -41,7 +40,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to stories_path, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -57,8 +56,14 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to stories_path }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def find_story
+    @story = Story.find(params[:story_id])
   end
 end
