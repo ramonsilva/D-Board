@@ -20,16 +20,16 @@
       <%= link_to 'New Task', new_story_task_path(story) %>
     </td>
     <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.where(status: 1) } %>
+      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_do } %>
     </td>
     <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.where(status: 2) } %>
+      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.doing } %>
     </td>
     <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.where(status: 3) } %>
+      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_verify } %>
     </td>
     <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.where(status: 4) } %>
+      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.done } %>
     </td>
   </tr>
 <% end %>
