@@ -2,21 +2,18 @@ require 'spec_helper'
 
 describe "tasks/edit" do
   before(:each) do
-    @task = assign(:task, stub_model(Task,
+    @story = assign :story, stub_model(Story, id: 42, name: 'Story Name') 
+    @task  = assign :task, stub_model(Task,
       :description => "MyText",
-      :status => "",
-      :story => nil
-    ))
+      :status => 1,
+      :story => @story
+    )
   end
 
   it "renders the edit task form" do
     render
-
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form[action=?][method=?]", task_path(@task), "post" do
+    assert_select "form[action=?][method=?]", story_task_path(@story, @task), "post" do
       assert_select "textarea#task_description[name=?]", "task[description]"
-      assert_select "input#task_status[name=?]", "task[status]"
-      assert_select "input#task_story[name=?]", "task[story]"
     end
   end
 end
