@@ -58,6 +58,7 @@ describe TasksController do
 
     describe "with valid params" do
       before :each do
+        valid_attributes.delete(:status)
         params.merge!(task: valid_attributes)
       end
 
@@ -71,6 +72,11 @@ describe TasksController do
         post :create, params, valid_session
         assigns(:task).should be_a(Task)
         assigns(:task).should be_persisted
+      end
+
+      it "newly created task status must be TODO" do
+        post :create, params, valid_session
+        assigns(:task).status.should == 1
       end
 
       it "redirects to the story board" do

@@ -21,6 +21,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = @story.tasks.build(params[:task])
+    @task.status = 1
 
     respond_to do |format|
       if @task.save
