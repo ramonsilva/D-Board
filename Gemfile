@@ -22,6 +22,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'xray-rails'
 end
+ 
+group :test do
+  gem 'shoulda-matchers', '~> 2.1.0'
+end
 
 gem 'jquery-rails'
 
