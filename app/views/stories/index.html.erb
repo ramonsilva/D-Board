@@ -1,40 +1,46 @@
-<h1>Listing stories</h1>
-
-<table>
-  <tr>
-    <th>Story</th>
-    <th>To Do</th>
-    <th>Doing</th>
-    <th>To Verify</th>
-    <th>Done</th>
-  </tr>
-
-<% @stories.each do |story| %>
-  <tr>
-    <td>
-      <span><%= story.name %></span>
-      <%= link_to 'Edit', edit_story_path(story) %>
-      <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <div>
-      </div>
-      <%= link_to 'New Task', new_story_task_path(story) %>
-    </td>
-    <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_do } %>
-    </td>
-    <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.doing } %>
-    </td>
-    <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_verify } %>
-    </td>
-    <td>
-      <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.done } %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Story', new_story_path %>
+<ul id='menu' class="row">
+  <li>
+    <i class="icon-plus-circled"></i>
+    <%= link_to 'New Story', new_story_path %>
+  </li>
+</ul>
+<div class="row">
+  <table id='board'>
+    <thead>
+      <tr>
+        <th>Story</th>
+        <th>To Do</th>
+        <th>Doing</th>
+        <th>To Verify</th>
+        <th>Done</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stories.each do |story| %>
+        <tr>
+          <td>
+            <span><%= story.name %></span>
+            <br />
+            <%= link_to 'Edit', edit_story_path(story) %>
+            |
+            <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <br />
+            <%= link_to 'New Task', new_story_task_path(story) %>
+          </td>
+          <td>
+            <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_do } %>
+          </td>
+          <td>
+            <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.doing } %>
+          </td>
+          <td>
+            <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.to_verify } %>
+          </td>
+          <td>
+            <%= render partial: 'task_list', locals: { story: story, tasks: story.tasks.done } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

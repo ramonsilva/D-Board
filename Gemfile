@@ -9,7 +9,9 @@ gem 'pg'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-
+  #gumby dependencies
+  gem 'compass-rails'
+  gem 'modular-scale'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
@@ -21,6 +23,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'xray-rails'
+  gem 'awesome_print'
 end
  
 group :test do

@@ -1,0 +1,62 @@
+h1 { font-size: 2.4em }
+h1.lead { border-bottom: 1px dotted #ccc; margin-bottom: 30px; }
+h4.lead { margin-bottom:10px; }
+#icon_map ul li { font-size: 16px; }
+.smallify { font-size: 13px; }
+
+.navbar { 
+  background-color: #59D12E;
+  margin-bottom: 0px;
+}
+.navbar h1{ 
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+.navbar h1 a { 
+  font-family: BlackJack;
+  font-size: 38px;
+  color: #316B15;
+}
+.navbar h2 { 
+  font-family: BlackJack;
+  font-size: 18px;
+  color: #316B15;
+  padding-top: 0px;
+  padding-left: 115px;
+  margin-top: -18px;
+}
+.navbar .logo {
+  height: 60px;
+}
+#menu {
+  background-color: #efefef;
+  color: #333;
+  width:100%;
+}
+#menu ul li{
+  text-align: left;
+}
+.row {
+  max-width: 100%;
+  padding: 5px;
+}
+#board {
+  width: 100%;
+  min-width: 320px;
+  border: 1px solid #ccc;
+}
+#board td, #board th{
+  width: 20%;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.task { 
+  background-color: #F4EF46;
+  height: 50px;
+  margin: 5px;
+}
+
+.field input, .field input[type="*"], .field textarea {
+  border: 1px solid #ccc;
+  box-shadow: none;
+}

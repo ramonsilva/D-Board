@@ -1,5 +1,9 @@
 <% tasks.each do |task| %>
-  <div><%= task.description %></div>
-  <%= link_to 'Edit', edit_story_task_path(story, task) %>
-  <%= link_to 'Destroy', story_task_path(story, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class='task'>
+    <%= task.description %>
+    <br />
+    <%= link_to 'Edit', edit_story_task_path(story, task) %>
+    |
+    <%= link_to 'Destroy', story_task_path(story, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 <% end %>

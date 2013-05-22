@@ -34,4 +34,7 @@ Wiyd::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Precompile additional assets
+  config.assets.precompile += %w( .svg .eot .woff .ttf )
 end
