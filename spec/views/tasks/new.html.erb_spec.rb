@@ -14,7 +14,7 @@ describe "tasks/new" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form[action=?][method=?]", new_story_task_path(@story), "post" do
+    assert_select "form[action=?][method=?]", story_tasks_path(@story), "post" do
       assert_select "textarea#task_description[name=?]", "task[description]"
     end
   end
