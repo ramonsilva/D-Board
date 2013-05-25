@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_filter :find_story
+  before_filter :find_story, :except  => :update
 
   # GET /tasks/new
   # GET /tasks/new.json
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to stories_path, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: {status:'ok'} }
       else
         format.html { render action: "edit" }
         format.json { render json: @task.errors, status: :unprocessable_entity }

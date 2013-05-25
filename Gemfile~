@@ -24,7 +24,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'xray-rails'
   gem 'awesome_print'
-  gem 'therubyracer'
+  #gem 'therubyracer'
 end
  
 group :test do
